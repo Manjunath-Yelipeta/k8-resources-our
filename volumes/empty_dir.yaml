@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: empty-dr
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+    - mountPath: /var/log/nginx
+      name: din-sri
+  - image: almalinux
+    name: almalinux
+    command: ["sleep", "1000"]
+    volumeMounts:
+    - mountPath: /mnt/alm_logs
+      name: din-sri
+  volumes:
+  - name: din-sri
+    emptyDir:
+      sizeLimit: 500Mi
